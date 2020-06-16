@@ -1,0 +1,32 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class catalog="quanlysv"
+           name="model.enteties.BangDiem" table="bangdiem">
+        <id name="maBangDiem" type="string">
+            <column name="mabangdiem" length="20"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="maMon" type ="string">
+            <column name="mamon" length="10"/>
+        </property>
+        <property name="mssv" type ="string">
+            <column name="mssv" length="10"/>
+        </property>
+        <property name="diemGiuaKy" type ="float">
+            <column name="diemgiuaky" />
+        </property>
+        <property name="diemCuoiKy" type ="float">
+            <column name="diemcuoiky" />
+        </property>
+        <property name="diemKhac" type ="float">
+            <column name="diemkhac" />
+        </property>
+        <property name="diemTong" type ="float">
+            <column name="diemtong" />
+        </property>
+    </class>
+</hibernate-mapping>

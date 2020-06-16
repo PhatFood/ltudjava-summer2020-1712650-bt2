@@ -49,6 +49,9 @@
         <!-- List of XML mapping files -->
         <mapping resource = "sinhvien.hbm.xml"/>
         <mapping resource = "lop.hbm.xml"/>
+        <mapping resource = "monhoc.hbm.xml"/>
+        <mapping resource = "bangdiem.hbm.xml"/>
+
 
     </session-factory>
 </hibernate-configuration>
