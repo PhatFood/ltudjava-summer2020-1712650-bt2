@@ -1,0 +1,126 @@
+package model.dao;
+
+import org.hibernate.*;
+import util.HibernateUtil;
+import model.enteties.SinhVien;
+import org.hibernate.query.Query;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SinhVienDAO {
+
+    public static List<SinhVien> layDanhSachSinhVien(){
+        List<SinhVien> ds = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            String hql = "select sv from SinhVien sv";
+            Query query = session.createQuery(hql);
+            ds = query.list();
+        } catch (HibernateException ex){
+            System.err.println(ex);
+        } finally{
+            session.close();
+        }
+        return ds;
+    }
+
+    public static SinhVien layThongTinSinhVien(String mssv)
+    {
+        SinhVien sv = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            sv = (SinhVien) session.get(SinhVien.class,mssv);
+        } catch (HibernateException ex){
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        return sv;
+    }
+
+    public static SinhVien layThongTinSinhVienQuaCmnd(String cmnd)
+    {
+        SinhVien sv = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            String hql = "SELECT sv FROM SinhVien sv WHERE sv.cmnd ='"+cmnd+"'" ;
+            Query query = session.createQuery(hql);
+            sv = (SinhVien) query.uniqueResult();
+        } catch (HibernateException ex){
+            System.err.println(ex);
+            sv = null;
+        } finally {
+            session.close();
+        }
+        return sv;
+    }
+
+    public static boolean themSinhVien(SinhVien sv)
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (SinhVienDAO.layThongTinSinhVien(sv.getMssv()) != null || LopDAO.layThongTinLop(sv.getLop()) == null || SinhVienDAO.layThongTinSinhVienQuaCmnd(sv.getCmnd()) != null){
+            return false;
+        }
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(sv);
+            transaction.commit();
+        }
+        catch (HibernateException ex)
+        {
+            transaction.rollback();
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        return true;
+    }
+
+    public static boolean xoaSinhVien(String maSinhVien)
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        SinhVien sv = SinhVienDAO.layThongTinSinhVien(maSinhVien);
+        if (sv == null)
+            return false;
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.delete(sv);
+            transaction.commit();
+        } catch (HibernateException ex){
+            transaction.rollback();
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        return true;
+    }
+
+    public static boolean capNhatThongTinSinhVien (SinhVien sv){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        SinhVien svByMssv, svByCmnd;
+        svByMssv = SinhVienDAO.layThongTinSinhVien(sv.getMssv());
+        svByCmnd = SinhVienDAO.layThongTinSinhVienQuaCmnd(sv.getCmnd());
+        if (svByMssv == null){
+            return false;
+        }
+        else if (LopDAO.layThongTinLop(sv.getLop()) == null)
+            return false;
+        else if (!(svByCmnd.getMssv().equals(svByMssv.getMssv())) && (svByCmnd != null))
+            return false;
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(sv);
+            transaction.commit();
+        } catch (HibernateException ex){
+            transaction.rollback();
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        return true;
+    }
+}

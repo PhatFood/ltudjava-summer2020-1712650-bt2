@@ -1,6 +1,6 @@
-package com.company.model;
+package model.enteties;
 
-public class sinhvien implements java.io.Serializable{
+public class SinhVien implements java.io.Serializable{
     private String mssv;
     private String hoVaTen;
     private String gioiTinh;

@@ -1,5 +1,6 @@
 <?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE hibernate-configuration SYSTEM
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
@@ -15,7 +16,7 @@
         <!-- Assume test is the database name -->
 
         <property name = "hibernate.connection.url">
-            jdbc:mysql://localhost/test
+            jdbc:mysql://localhost:3306/quanlysv
         </property>
 
         <property name = "hibernate.connection.username">
@@ -23,11 +24,11 @@
         </property>
 
         <property name = "hibernate.connection.password">
-            root123
+            1234
         </property>
 
         <!-- List of XML mapping files -->
-        <mapping resource = "Employee.hbm.xml"/>
+        <mapping resource = "pojo.sinhvien.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>
