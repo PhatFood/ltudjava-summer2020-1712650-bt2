@@ -19,8 +19,13 @@
             <property name="cmnd" type ="string">
                 <column name="cmnd" length="10"/>
             </property>
-            <property name="lop" type ="string">
+            <!--<property name="lop" type ="string">
                 <column name="lop" length="10"/>
-            </property>
+            </property>-->
+            <many-to-one name="lop" class = "model.enteties.Lop" fetch="join" cascade="save-update">
+                <column name="lop" length="10" not-null="true"/>
+            </many-to-one>
+
+
         </class>
 </hibernate-mapping>

@@ -10,5 +10,11 @@
             <column name="malop" length="10"/>
             <generator class="assigned"/>
         </id>
+        <set inverse="true" name="sinhVienSet" fetch="select">
+            <key>
+                <column name="lop" not-null="true"/>
+            </key>
+            <one-to-many class="model.enteties.SinhVien"/>
+        </set>
     </class>
 </hibernate-mapping>

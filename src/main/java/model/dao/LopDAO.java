@@ -4,6 +4,7 @@ import model.enteties.Lop;
 import model.enteties.SinhVien;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
 
@@ -23,6 +24,25 @@ public class LopDAO {
             session.close();
         }
         return ds;
+    }
+
+    public static boolean themLop(Lop lop)
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(lop);
+            transaction.commit();
+        }
+        catch (HibernateException ex)
+        {
+            transaction.rollback();
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        return true;
     }
 
     public static Lop layThongTinLop(String maLop)

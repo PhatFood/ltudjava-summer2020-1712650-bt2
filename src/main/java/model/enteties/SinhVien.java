@@ -5,7 +5,7 @@ public class SinhVien implements java.io.Serializable{
     private String hoVaTen;
     private String gioiTinh;
     private String cmnd;
-    private String lop;
+    private Lop lop;
 
     public String getMssv() {
         return mssv;
@@ -39,11 +39,11 @@ public class SinhVien implements java.io.Serializable{
         this.cmnd = cmnd;
     }
 
-    public String getLop() {
+    public Lop getLop() {
         return lop;
     }
 
-    public void setLop(String lop) {
+    public void setLop(Lop lop) {
         this.lop = lop;
     }
 }

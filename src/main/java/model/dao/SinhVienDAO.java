@@ -31,6 +31,7 @@ public class SinhVienDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             sv = (SinhVien) session.get(SinhVien.class,mssv);
+            Hibernate.initialize(sv.getLop());
         } catch (HibernateException ex){
             System.err.println(ex);
         } finally {
@@ -59,9 +60,6 @@ public class SinhVienDAO {
     public static boolean themSinhVien(SinhVien sv)
     {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        if (SinhVienDAO.layThongTinSinhVien(sv.getMssv()) != null || LopDAO.layThongTinLop(sv.getLop()) == null || SinhVienDAO.layThongTinSinhVienQuaCmnd(sv.getCmnd()) != null){
-            return false;
-        }
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -100,16 +98,6 @@ public class SinhVienDAO {
 
     public static boolean capNhatThongTinSinhVien (SinhVien sv){
         Session session = HibernateUtil.getSessionFactory().openSession();
-        SinhVien svByMssv, svByCmnd;
-        svByMssv = SinhVienDAO.layThongTinSinhVien(sv.getMssv());
-        svByCmnd = SinhVienDAO.layThongTinSinhVienQuaCmnd(sv.getCmnd());
-        if (svByMssv == null){
-            return false;
-        }
-        else if (LopDAO.layThongTinLop(sv.getLop()) == null)
-            return false;
-        else if (!(svByCmnd.getMssv().equals(svByMssv.getMssv())) && (svByCmnd != null))
-            return false;
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
