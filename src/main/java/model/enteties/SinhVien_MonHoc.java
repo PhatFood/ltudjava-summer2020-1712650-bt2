@@ -1,31 +1,31 @@
 package model.enteties;
 
 public class SinhVien_MonHoc {
-    public String getMssv() {
-        return mssv;
+    private SinhVien sinhVien;
+    private MonHoc monHoc;
+    private String msSv_Mh;
+
+    public SinhVien getSinhVien() {
+        return sinhVien;
     }
 
-    public void setMssv(String mssv) {
-        this.mssv = mssv;
+    public void setSinhVien(SinhVien sinhVien) {
+        this.sinhVien = sinhVien;
     }
 
-    public String getMaMon() {
-        return maMon;
+    public MonHoc getMonHoc() {
+        return monHoc;
     }
 
-    public void setMaMon(String maMon) {
-        this.maMon = maMon;
+    public void setMonHoc(MonHoc monHoc) {
+        this.monHoc = monHoc;
     }
 
-    public String getMsSv_Hs() {
-        return msSv_Hs;
+    public String getMsSv_Mh() {
+        return msSv_Mh;
     }
 
-    public void setMsSv_Hs(String msSv_Hs) {
-        this.msSv_Hs = msSv_Hs;
+    public void setMsSv_Mh(String msSv_Mh) {
+        this.msSv_Mh = msSv_Mh;
     }
-
-    private String mssv;
-    private String maMon;
-    private String msSv_Hs;
 }

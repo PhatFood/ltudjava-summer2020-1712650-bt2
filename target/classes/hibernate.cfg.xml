@@ -51,6 +51,8 @@
         <mapping resource = "lop.hbm.xml"/>
         <mapping resource = "monhoc.hbm.xml"/>
         <mapping resource = "bangdiem.hbm.xml"/>
+        <mapping resource = "sinhvien_monhoc.hbm.xml"/>
+
 
 
     </session-factory>

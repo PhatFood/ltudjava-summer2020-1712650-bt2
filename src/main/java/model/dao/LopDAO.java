@@ -2,6 +2,7 @@ package model.dao;
 
 import model.enteties.Lop;
 import model.enteties.SinhVien;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -51,6 +52,7 @@ public class LopDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             lop = (Lop) session.get(Lop.class,maLop);
+            Hibernate.initialize(lop.getSinhVienSet());
         } catch (HibernateException ex){
             System.err.println(ex);
         } finally {

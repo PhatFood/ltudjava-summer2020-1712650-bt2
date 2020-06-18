@@ -25,7 +25,5 @@
             <many-to-one name="lop" class = "model.enteties.Lop" fetch="join" cascade="save-update">
                 <column name="lop" length="10" not-null="true"/>
             </many-to-one>
-
-
         </class>
 </hibernate-mapping>

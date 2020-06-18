@@ -9,7 +9,7 @@ import util.HibernateUtil;
 
 import java.util.List;
 
-public class BangDiemDao {
+public class BangDiemDAO {
     public static List<BangDiem> layDanhSachBangDiem(){
         List<BangDiem> ds = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
