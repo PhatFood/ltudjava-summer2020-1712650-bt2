@@ -32,6 +32,7 @@ public class SinhVienDAO {
         try {
             sv = (SinhVien) session.get(SinhVien.class,mssv);
             Hibernate.initialize(sv.getLop());
+            Hibernate.initialize(sv.getSinhVien_monHocs());
         } catch (HibernateException ex){
             System.err.println(ex);
         } finally {

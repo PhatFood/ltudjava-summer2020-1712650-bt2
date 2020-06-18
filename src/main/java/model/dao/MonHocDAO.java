@@ -2,6 +2,7 @@ package model.dao;
 
 import model.enteties.Lop;
 import model.enteties.MonHoc;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -30,6 +31,7 @@ public class MonHocDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             monHoc = (MonHoc) session.get(MonHoc.class,mamon);
+            Hibernate.initialize(monHoc.getSinhVien_monHocs());
         } catch (HibernateException ex){
             System.err.println(ex);
         } finally {

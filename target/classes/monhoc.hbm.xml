@@ -19,5 +19,11 @@
         <property name="lop" type ="string">
             <column name="lop" length="10"/>
         </property>
+        <set inverse="true" name="sinhVien_monHocs" fetch="join" lazy="false">
+            <key>
+                <column name="mamonhoc" not-null="true" length="10"/>
+            </key>
+            <one-to-many class="model.enteties.SinhVien_MonHoc"/>
+        </set>
     </class>
 </hibernate-mapping>

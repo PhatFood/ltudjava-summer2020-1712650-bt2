@@ -1,16 +1,15 @@
-import model.dao.LopDAO;
-import model.dao.SinhVienDAO;
-import model.enteties.Lop;
-import model.enteties.SinhVien;
-import model.enteties.SinhVien_MonHoc;
-import org.hibernate.integrator.spi.Integrator;
-
-import java.util.Iterator;
-import java.util.List;
+import model.csvReader;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        String file = "E:/Code/Nam3_2019/Ky2/LapTrinhJava/DeadLine/InputHibernate/17HCB.csv";
+        boolean check = csvReader.docFileLop(file);
+        if (check)
+        {
+            System.out.println("OK");
+        }
 
        /* SinhVien sv = new SinhVien();
         sv.setMssv("3123142");
@@ -20,7 +19,7 @@ public class Main {
         Lop lop = new Lop();
         lop.setMalop("17CTT9");
         sv.setLop(lop);
-        boolean kq = SinhVienDAO.capNhatThongTinSinhVien(sv);
+        boolean kq = SinhVienDAO.themSinhVien(sv);
         if (kq == true)
         {
             System.out.println("OK");
@@ -38,16 +37,16 @@ public class Main {
             System.out.println("Hoc: " + sinhVien.getSinhVien_monHocs().isEmpty());
         }*/
 
-        /*List<Lop> ds1 = LopDAO.layDanhSachLop();
+        /*List<MonHoc> ds1 = MonHocDAO.layDanhSachMonHoc();
         System.out.println(""+ds1.size());
         for (int i = 0; i<ds1.size() ; i++)
         {
-            Lop lop1 = ds1.get(i);
-            System.out.println(lop1.getMalop());
-            Iterator<SinhVien> sinhViens = lop1.getSinhVienSet().iterator();
+            MonHoc monHoc = ds1.get(i);
+            System.out.println(monHoc.getTenMon());
+            Iterator<SinhVien_MonHoc> sinhViens = monHoc.getSinhVien_monHocs().iterator();
             while(sinhViens.hasNext()){
-                SinhVien s = sinhViens.next();
-                System.out.println(s.getHoVaTen());
+                SinhVien_MonHoc s = sinhViens.next();
+                System.out.println(s.getSinhVien().getHoVaTen());
             }
         }*/
 
