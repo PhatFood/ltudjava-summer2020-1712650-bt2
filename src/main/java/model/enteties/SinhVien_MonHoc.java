@@ -1,3 +1,4 @@
+/*
 package model.enteties;
 
 public class SinhVien_MonHoc {
@@ -29,3 +30,4 @@ public class SinhVien_MonHoc {
         this.msSv_Mh = msSv_Mh;
     }
 }
+*/

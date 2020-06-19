@@ -13,17 +13,14 @@
         <property name="tenMon" type ="string">
             <column name="tenmon" length="45"/>
         </property>
-        <property name="phongHoc" type ="string">
-            <column name="phonghoc" length="10"/>
-        </property>
-        <property name="lop" type ="string">
-            <column name="lop" length="10"/>
-        </property>
-        <set inverse="true" name="sinhVien_monHocs" fetch="join" lazy="false">
+        <!--<many-to-one name="lop" class = "model.enteties.Lop" fetch="join" cascade="save-update">
+            <column name="lop" length="10" not-null="true"/>
+        </many-to-one>-->
+        <set inverse="true" name="lopHoc_monHocs" fetch="join" lazy="false">
             <key>
-                <column name="mamonhoc" not-null="true" length="10"/>
+                <column name="mamon" not-null="true" length="10"/>
             </key>
-            <one-to-many class="model.enteties.SinhVien_MonHoc"/>
+            <one-to-many class="model.enteties.LopHoc_MonHoc"/>
         </set>
     </class>
 </hibernate-mapping>

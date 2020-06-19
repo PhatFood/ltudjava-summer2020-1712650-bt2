@@ -1,8 +1,7 @@
 package model.dao;
 
-import model.enteties.BangDiem;
-import model.enteties.MonHoc;
 import model.enteties.SinhVien;
+import model.enteties.SinhVien_HocLop_Mon;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -11,12 +10,12 @@ import util.HibernateUtil;
 
 import java.util.List;
 
-public class BangDiemDAO {
-    public static List<BangDiem> layDanhSachBangDiem(){
-        List<BangDiem> ds = null;
+public class SinhVien_HocLop_MonDAO {
+    public static List<SinhVien_HocLop_Mon> layDanhSachSinhVien_HocLop_Mon(){
+        List<SinhVien_HocLop_Mon> ds = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            String hql = "select bangdiem from BangDiem bangdiem";
+            String hql = "select svhlm from SinhVien_HocLop_Mon svhlm";
             Query query = session.createQuery(hql);
             ds = query.list();
         } catch (HibernateException ex){
@@ -27,43 +26,27 @@ public class BangDiemDAO {
         return ds;
     }
 
-    public static BangDiem layThongTinBangDiem(String mabangdiem)
+    public static SinhVien_HocLop_Mon layThongTinSinhVien_HocLop_Mon(String ma_svhlm)
     {
-        BangDiem bangDiem = null;
+        SinhVien_HocLop_Mon sinhVien_hocLop_mon = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            bangDiem = (BangDiem) session.get(BangDiem.class,mabangdiem);
+            sinhVien_hocLop_mon = (SinhVien_HocLop_Mon) session.get(SinhVien_HocLop_Mon.class,ma_svhlm);
         } catch (HibernateException ex){
             System.err.println(ex);
         } finally {
             session.close();
         }
-        return bangDiem;
+        return sinhVien_hocLop_mon;
     }
 
-    public static boolean capNhatThongTinBangDiem (BangDiem bangDiem){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        try {
-            transaction = session.beginTransaction();
-            session.update(bangDiem);
-            transaction.commit();
-        } catch (HibernateException ex){
-            transaction.rollback();
-            System.err.println(ex);
-        } finally {
-            session.close();
-        }
-        return true;
-    }
-
-    public static boolean themBangDiem(BangDiem bangDiem)
+    public static boolean themSinhVien_HocLop_Mon(SinhVien_HocLop_Mon sinhVien_hocLop_mon)
     {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.save(bangDiem);
+            session.save(sinhVien_hocLop_mon);
             transaction.commit();
         }
         catch (HibernateException ex)

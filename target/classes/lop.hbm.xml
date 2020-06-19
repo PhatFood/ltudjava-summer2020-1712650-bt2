@@ -5,16 +5,22 @@
 
 <hibernate-mapping>
     <class catalog="quanlysv"
-           name="model.enteties.Lop" table="lophoc">
+           name="model.enteties.Lop" table="lophoc" >
         <id name="malop" type="string">
             <column name="malop" length="10"/>
             <generator class="assigned"/>
         </id>
-        <set inverse="true" name="sinhVienSet" fetch="join" lazy="false">
+        <set inverse="true" name="sinhVienSet" fetch="select" lazy="false" >
             <key>
                 <column name="lop" not-null="true" length="10"/>
             </key>
             <one-to-many class="model.enteties.SinhVien"/>
+        </set>
+        <set inverse="true" name="lopHoc_monHocs" fetch="select" lazy="false" >
+            <key>
+                <column name="malophoc" not-null="true" length="10"/>
+            </key>
+            <one-to-many class="model.enteties.LopHoc_MonHoc"/>
         </set>
     </class>
 </hibernate-mapping>

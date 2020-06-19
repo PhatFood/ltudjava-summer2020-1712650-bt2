@@ -1,25 +1,20 @@
 package model.dao;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
-import model.enteties.Lop;
-import model.enteties.SinhVien;
-import org.hibernate.*;
+import model.enteties.LopHoc_MonHoc;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
 
-import java.io.FileReader;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-public class LopDAO {
-    public static List<Lop> layDanhSachLop(){
-        List<Lop> ds = null;
+public class LopHoc_MonHocDAO {
+    public static List<LopHoc_MonHoc> layDanhSachLopHoc_MonHoc(){
+        List<LopHoc_MonHoc> ds = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            String hql = "select lop from Lop lop";
+            String hql = "select lhmhsv from LopHoc_MonHoc lhmhsv";
             Query query = session.createQuery(hql);
             ds = query.list();
         } catch (HibernateException ex){
@@ -30,13 +25,13 @@ public class LopDAO {
         return ds;
     }
 
-    public static boolean themLop(Lop lop)
+    public static boolean themLopHoc_MonHoc(LopHoc_MonHoc lopHoc_monHoc)
     {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.save(lop);
+            session.save(lopHoc_monHoc);
             transaction.commit();
         }
         catch (HibernateException ex)
@@ -49,22 +44,19 @@ public class LopDAO {
         return true;
     }
 
-    public static Lop layThongTinLop(String maLop)
+    public static LopHoc_MonHoc layThongTinLopHoc_MonHoc(String maLopHoc_MonHoc)
     {
-        Lop lop = null;
+        LopHoc_MonHoc lopHoc_monHoc = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        try{
-            String hql = "SELECT lop FROM Lop lop WHERE lop.malop ='"+maLop+"'" ;
-            Query query = session.createQuery(hql);
-            lop = (Lop) query.uniqueResult();
-            //lop = (Lop) session.get(Lop.class,maLop);
+        try {
+            lopHoc_monHoc = (LopHoc_MonHoc) session.get(LopHoc_MonHoc.class,maLopHoc_MonHoc);
+            /*Hibernate.initialize(sv.getLop());
+            Hibernate.initialize(sv.getSinhVien_monHocs());*/
         } catch (HibernateException ex){
             System.err.println(ex);
         } finally {
             session.close();
         }
-        return lop;
+        return lopHoc_monHoc;
     }
-
-
 }

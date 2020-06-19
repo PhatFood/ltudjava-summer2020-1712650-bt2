@@ -10,15 +10,15 @@ public class SinhVien implements java.io.Serializable{
     private String cmnd;
     private Lop lop;
 
-    public Set<SinhVien_MonHoc> getSinhVien_monHocs() {
-        return sinhVien_monHocs;
+    public Set<SinhVien_HocLop_Mon> getSinhVien_hocLop_mons() {
+        return sinhVien_hocLop_mons;
     }
 
-    public void setSinhVien_monHocs(Set<SinhVien_MonHoc> sinhVien_monHocs) {
-        this.sinhVien_monHocs = sinhVien_monHocs;
+    public void setSinhVien_hocLop_mons(Set<SinhVien_HocLop_Mon> sinhVien_hocLop_mons) {
+        this.sinhVien_hocLop_mons = sinhVien_hocLop_mons;
     }
 
-    private Set<SinhVien_MonHoc> sinhVien_monHocs = new HashSet<SinhVien_MonHoc>(0);
+    private Set<SinhVien_HocLop_Mon> sinhVien_hocLop_mons = new HashSet<SinhVien_HocLop_Mon>(0);
 
     public String getMssv() {
         return mssv;

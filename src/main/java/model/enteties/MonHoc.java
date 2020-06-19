@@ -20,34 +20,17 @@ public class MonHoc implements java.io.Serializable {
         this.tenMon = tenMon;
     }
 
-    public String getPhongHoc() {
-        return phongHoc;
-    }
-
-    public void setPhongHoc(String phongHoc) {
-        this.phongHoc = phongHoc;
-    }
-
-    public String getLop() {
-        return lop;
-    }
-
-    public void setLop(String lop) {
-        this.lop = lop;
-    }
 
     private String maMon;
     private String tenMon;
-    private String phongHoc;
-    private String lop;
 
-    public Set<SinhVien_MonHoc> getSinhVien_monHocs() {
-        return sinhVien_monHocs;
+    public Set<LopHoc_MonHoc> getLopHoc_monHocs() {
+        return lopHoc_monHocs;
     }
 
-    public void setSinhVien_monHocs(Set<SinhVien_MonHoc> sinhVien_monHocs) {
-        this.sinhVien_monHocs = sinhVien_monHocs;
+    public void setLopHoc_monHocs(Set<LopHoc_MonHoc> lopHoc_monHocs) {
+        this.lopHoc_monHocs = lopHoc_monHocs;
     }
 
-    private Set<SinhVien_MonHoc> sinhVien_monHocs = new HashSet<SinhVien_MonHoc>(0);
+    private Set<LopHoc_MonHoc> lopHoc_monHocs = new HashSet<LopHoc_MonHoc>(0);
 }

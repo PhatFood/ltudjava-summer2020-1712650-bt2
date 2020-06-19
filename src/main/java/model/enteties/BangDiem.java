@@ -1,28 +1,14 @@
 package model.enteties;
 
-public class BangDiem {
+import java.io.Serializable;
+
+public class BangDiem  implements Serializable {
     public String getMaBangDiem() {
         return maBangDiem;
     }
 
     public void setMaBangDiem(String maBangDiem) {
         this.maBangDiem = maBangDiem;
-    }
-
-    public String getMaMon() {
-        return maMon;
-    }
-
-    public void setMaMon(String maMon) {
-        this.maMon = maMon;
-    }
-
-    public String getMssv() {
-        return mssv;
-    }
-
-    public void setMssv(String mssv) {
-        this.mssv = mssv;
     }
 
     public float getDiemGiuaKy() {
@@ -57,9 +43,16 @@ public class BangDiem {
         this.diemTong = diemTong;
     }
 
+    /*public SinhVien_HocLop_Mon getSinhVien_hocLop_mon() {
+        return sinhVien_hocLop_mon;
+    }
+
+    public void setSinhVien_hocLop_mon(SinhVien_HocLop_Mon sinhVien_hocLop_mon) {
+        this.sinhVien_hocLop_mon = sinhVien_hocLop_mon;
+    }
+
+    private SinhVien_HocLop_Mon sinhVien_hocLop_mon;*/
     private String maBangDiem;
-    private String maMon;
-    private String mssv;
     private float diemGiuaKy;
     private float diemCuoiKy;
     private float diemKhac;

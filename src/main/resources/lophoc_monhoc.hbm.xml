@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class catalog="quanlysv"
+           name="model.enteties.LopHoc_MonHoc" table="lophoc_monhoc">
+        <id name="maLopHoc_MonHoc" type="string">
+            <column name="malophoc_monhoc" length="45"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="phongHoc" type ="string">
+            <column name="phonghoc" length="10"/>
+        </property>
+        <set inverse="true" name="sinhVien_hocLop_mons" fetch="select" lazy="false" >
+            <key>
+                <column name="malophoc_monhoc" not-null="true" length="10"/>
+            </key>
+            <one-to-many class="model.enteties.SinhVien_HocLop_Mon"/>
+        </set>
+        <many-to-one name="monHoc" class = "model.enteties.MonHoc" fetch="join" cascade="save-update">
+            <column name="mamon" length="10" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="lop" class = "model.enteties.Lop" fetch="join" cascade="save-update">
+            <column name="malophoc" length="10" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

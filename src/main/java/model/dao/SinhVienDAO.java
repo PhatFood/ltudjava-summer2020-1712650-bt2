@@ -31,8 +31,8 @@ public class SinhVienDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             sv = (SinhVien) session.get(SinhVien.class,mssv);
-            Hibernate.initialize(sv.getLop());
-            Hibernate.initialize(sv.getSinhVien_monHocs());
+            /*Hibernate.initialize(sv.getLop());
+            Hibernate.initialize(sv.getSinhVien_monHocs());*/
         } catch (HibernateException ex){
             System.err.println(ex);
         } finally {
@@ -79,6 +79,7 @@ public class SinhVienDAO {
 
     public static boolean xoaSinhVien(String maSinhVien)
     {
+        boolean result = false;
         Session session = HibernateUtil.getSessionFactory().openSession();
         SinhVien sv = SinhVienDAO.layThongTinSinhVien(maSinhVien);
         if (sv == null)
@@ -91,10 +92,11 @@ public class SinhVienDAO {
         } catch (HibernateException ex){
             transaction.rollback();
             System.err.println(ex);
+            result = false;
         } finally {
             session.close();
+            return result;
         }
-        return true;
     }
 
     public static boolean capNhatThongTinSinhVien (SinhVien sv){

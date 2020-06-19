@@ -19,17 +19,14 @@
             <property name="cmnd" type ="string">
                 <column name="cmnd" length="10"/>
             </property>
-            <!--<property name="lop" type ="string">
-                <column name="lop" length="10"/>
-            </property>-->
-            <many-to-one name="lop" class = "model.enteties.Lop" fetch="join" cascade="save-update">
+            <many-to-one name="lop" class = "model.enteties.Lop" fetch="join">
                 <column name="lop" length="10" not-null="true"/>
             </many-to-one>
-            <set inverse="true" name="sinhVien_monHocs" fetch="join" lazy="false">
+            <set inverse="true" name="sinhVien_hocLop_mons" fetch="select" lazy="false">
                 <key>
                     <column name="masinhvien" not-null="true" length="10"/>
                 </key>
-                <one-to-many class="model.enteties.SinhVien_MonHoc"/>
+                <one-to-many class="model.enteties.SinhVien_HocLop_Mon"/>
             </set>
         </class>
 </hibernate-mapping>

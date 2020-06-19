@@ -7,15 +7,9 @@
     <class catalog="quanlysv"
            name="model.enteties.BangDiem" table="bangdiem">
         <id name="maBangDiem" type="string">
-            <column name="mabangdiem" length="20"/>
+            <column name="mabangdiem" length="45"/>
             <generator class="assigned"/>
         </id>
-        <property name="maMon" type ="string">
-            <column name="mamon" length="10"/>
-        </property>
-        <property name="mssv" type ="string">
-            <column name="mssv" length="10"/>
-        </property>
         <property name="diemGiuaKy" type ="float">
             <column name="diemgiuaky" />
         </property>
@@ -28,5 +22,6 @@
         <property name="diemTong" type ="float">
             <column name="diemtong" />
         </property>
+
     </class>
 </hibernate-mapping>
