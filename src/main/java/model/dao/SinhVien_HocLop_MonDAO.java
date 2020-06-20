@@ -26,6 +26,27 @@ public class SinhVien_HocLop_MonDAO {
         return ds;
     }
 
+    public static boolean xoaSinhVien_HocLop_Mon(SinhVien_HocLop_Mon sinhVien_hocLop_mon)
+    {
+        boolean result = false;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (sinhVien_hocLop_mon == null)
+            return false;
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.delete(sinhVien_hocLop_mon);
+            transaction.commit();
+        } catch (HibernateException ex){
+            transaction.rollback();
+            System.err.println(ex);
+            result = false;
+        } finally {
+            session.close();
+            return result;
+        }
+    }
+
     public static SinhVien_HocLop_Mon layThongTinSinhVien_HocLop_Mon(String ma_svhlm)
     {
         SinhVien_HocLop_Mon sinhVien_hocLop_mon = null;

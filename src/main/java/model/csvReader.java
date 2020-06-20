@@ -27,7 +27,7 @@ public class csvReader {
             if (allData.size()>0)
             {
                 Lop lop = new Lop();
-                lop.setMalop(allData.get(0)[0]);
+                lop.setMalop(allData.get(0)[0].replaceAll("[\uFEFF-\uFFFF]", ""));
                 try{
                     LopDAO.themLop(lop);
                 }   catch (Exception e){
@@ -82,7 +82,7 @@ public class csvReader {
                 Lop lop = new Lop();
 
                 try
-                { lop = LopDAO.layThongTinLop(allData.get(0)[0]);}
+                { lop = LopDAO.layThongTinLop(allData.get(0)[0].replaceAll("[\uFEFF-\uFFFF]", ""));}
                 catch (Exception e)
                 {
                     System.err.println(e);
@@ -197,7 +197,7 @@ public class csvReader {
                 {
                     String[] row = allData.get(i);
                    BangDiem bangDiem = new BangDiem();
-                   bangDiem.setMaBangDiem(row[1]+"-"+allData.get(0)[0]);
+                   bangDiem.setMaBangDiem(row[1]+"-"+allData.get(0)[0].replaceAll("[\uFEFF-\uFFFF]", ""));
                    bangDiem.setDiemGiuaKy(Float.parseFloat(row[3]));
                    bangDiem.setDiemCuoiKy(Float.parseFloat(row[4]));
                    bangDiem.setDiemKhac(Float.parseFloat(row[5]));

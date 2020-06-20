@@ -1,15 +1,8 @@
+import controller.LoginController;
+import controller.LopController;
 import model.csvReader;
-import model.dao.LopDAO;
-import model.dao.MonHocDAO;
-import model.dao.SinhVienDAO;
-import model.enteties.Lop;
-import model.enteties.MonHoc;
-import model.enteties.SinhVien;
-
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import view.Login;
+import view.LopView;
 
 public class Main {
 
@@ -69,12 +62,18 @@ public class Main {
         } catch (Exception e)
         {}*/
 
-        String file = "E:/Code/Nam3_2019/Ky2/LapTrinhJava/DeadLine/InputHibernate/bangdiem.csv";
-        boolean check = csvReader.docFileDiem(file);
+        /*
+        String file = "E:/Code/Nam3_2019/Ky2/LapTrinhJava/DeadLine/InputHibernate/tkb1.csv";
+        boolean check = csvReader.docFileTKB(file);
         if (check)
         {
             System.out.println("OK");
-        }
+        }*/
+
+        Login view = new Login();
+        LoginController a = new LoginController(view);
+        a.showLoginView();
+
 
         /*SinhVien sv = new SinhVien();
         sv.setMssv("3123142");

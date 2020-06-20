@@ -99,6 +99,27 @@ public class SinhVienDAO {
         }
     }
 
+    public static boolean xoaSinhVien(SinhVien sv)
+    {
+        boolean result = false;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (sv == null)
+            return false;
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.delete(sv);
+            transaction.commit();
+        } catch (HibernateException ex){
+            transaction.rollback();
+            System.err.println(ex);
+            result = false;
+        } finally {
+            session.close();
+            return result;
+        }
+    }
+
     public static boolean capNhatThongTinSinhVien (SinhVien sv){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
