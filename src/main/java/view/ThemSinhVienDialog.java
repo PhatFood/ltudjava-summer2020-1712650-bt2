@@ -65,6 +65,8 @@ public class ThemSinhVienDialog extends JDialog implements ActionListener {
         ThemSinhVienDialog dialog = new ThemSinhVienDialog();
         dialog.pack();
         dialog.setVisible(true);
+        dialog.setAlwaysOnTop(true);
+        dialog.setLocationRelativeTo(null);
         System.exit(0);
 
     }

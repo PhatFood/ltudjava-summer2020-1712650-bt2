@@ -24,6 +24,7 @@ public class LopView extends JFrame implements ActionListener, ListSelectionList
     private JButton xoaSinhVienButton;
     private JButton themSinhVienButton;
     private JPanel rootPanel;
+    private JButton themSinhVienVaoLopNayButton;
 
     private Object[][] students = new Object[][]{};
     private String[] header = new String[]{"STT", "MSSV", "Họ tên", "Giới tính", "CMND"};
@@ -38,19 +39,26 @@ public class LopView extends JFrame implements ActionListener, ListSelectionList
         setSize(900, 500);
         table1.setModel(new DefaultTableModel((Object[][]) students, header));
 
-        //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        themSinhVienVaoLopNayButton.setEnabled(false);
+
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
+
 
     public void addXemButtonListener(ActionListener listener) {
         xemButton.addActionListener(listener);
+    }
+
+    public void addThemSinhVienLopMonListener(ActionListener listener) {
+        themSinhVienVaoLopNayButton.addActionListener(listener);
     }
 
     public void addThemSinhVienButtonListener(ActionListener listener) {
         themSinhVienButton.addActionListener(listener);
     }
 
-    public void updateDataLop(List<Lop> lopList)
-    {
+    public void updateDataLop(List<Lop> lopList) {
         lopsData = lopList;
     }
 
@@ -130,6 +138,9 @@ public class LopView extends JFrame implements ActionListener, ListSelectionList
         rootPanel.add(scrollPane1, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 6, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         table1 = new JTable();
         scrollPane1.setViewportView(table1);
+        themSinhVienVaoLopNayButton = new JButton();
+        themSinhVienVaoLopNayButton.setText("ThemSinhVienVaoLopNay");
+        rootPanel.add(themSinhVienVaoLopNayButton, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
@@ -149,10 +160,25 @@ public class LopView extends JFrame implements ActionListener, ListSelectionList
 
     }
 
+    public String layMSSVQuaDialog() {
+        setAlwaysOnTop(false);
+        ThemMaSoSinhVienDialog view = new ThemMaSoSinhVienDialog();
+        view.setSize(400, 200);
+        view.show();
+        setAlwaysOnTop(true);
+        if (!view.isOK) {
+            return null;
+        }
+        String mssv = view.getMssvQuaDialog();
+        return mssv;
+    }
+
     public SinhVien laySinhVienInfoQuaDialog() {
+        setAlwaysOnTop(false);
         ThemSinhVienDialog view = new ThemSinhVienDialog();
         view.setSize(500, 300);
         view.show();
+        setAlwaysOnTop(true);
         if (!view.isOK) {
             return null;
         }
@@ -179,6 +205,9 @@ public class LopView extends JFrame implements ActionListener, ListSelectionList
     }
 
     public void xemLop() {
+        if (comboBox2.getSelectedIndex() != 0 && comboBox1.getSelectedIndex() != 0) {
+            themSinhVienVaoLopNayButton.setEnabled(true);
+        } else themSinhVienVaoLopNayButton.setEnabled(false);
         Object blankObject[][] = new Object[][]{};
         if (comboBox1.getSelectedIndex() != 0) {
             if (comboBox2.getSelectedIndex() != 0) {
@@ -234,5 +263,21 @@ public class LopView extends JFrame implements ActionListener, ListSelectionList
         } else
             table1.setModel(new DefaultTableModel((Object[][]) blankObject, header));
 
+    }
+
+    public LopHoc_MonHoc layLopHocMonHOc() {
+        if (comboBox2.getSelectedIndex() == 0 || comboBox1.getSelectedIndex() == 0)
+            return null;
+        LopHoc_MonHoc lopHoc_monHoc = new LopHoc_MonHoc();
+        MonHoc monHoc = monHocsData.get(comboBox2.getSelectedIndex() - 1);
+        Lop lop = lopsData.get(comboBox1.getSelectedIndex() - 1);
+        lopHoc_monHoc = LopHoc_MonHocDAO.layThongTinLopHoc_MonHoc(lop.getMalop() + "-" + monHoc.getMaMon());
+        return lopHoc_monHoc;
+    }
+
+    public MonHoc layThongTinMonHoc() {
+        if (comboBox2.getSelectedIndex() == 0)
+            return null;
+        return monHocsData.get(comboBox2.getSelectedIndex() - 1);
     }
 }

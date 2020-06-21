@@ -53,6 +53,7 @@
         <mapping resource = "bangdiem.hbm.xml"/>
         <mapping resource = "sinhvien_hoclop_mon.hbm.xml"/>
         <mapping resource = "lophoc_monhoc.hbm.xml"/>
+        <mapping resource = "taikhoan.hbm.xml"/>
 
 
 

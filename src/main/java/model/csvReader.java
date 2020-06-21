@@ -45,6 +45,18 @@ public class csvReader {
                     sv.setCmnd(row[4]);
                     sv.setLop(lop);
 
+                    TaiKhoan tk = new TaiKhoan();
+                    tk.setTaikhoan(sv.getMssv());
+                    tk.setMatkhau(sv.getMssv());
+
+                    try{
+                        TaiKhoanDAO.themTaiKhoan(tk);
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+
                     try{
                     SinhVienDAO.themSinhVien(sv);
                     }
@@ -204,6 +216,13 @@ public class csvReader {
                    bangDiem.setDiemTong(Float.parseFloat(row[6]));
                     try{
                         BangDiemDAO.themBangDiem(bangDiem);
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    try{
+                        BangDiemDAO.capNhatThongTinBangDiem(bangDiem);
                     }
                     catch (Exception e)
                     {

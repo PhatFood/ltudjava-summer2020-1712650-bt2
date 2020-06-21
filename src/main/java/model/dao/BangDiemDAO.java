@@ -42,6 +42,7 @@ public class BangDiemDAO {
     }
 
     public static boolean capNhatThongTinBangDiem (BangDiem bangDiem){
+        boolean kq = true;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
@@ -51,10 +52,11 @@ public class BangDiemDAO {
         } catch (HibernateException ex){
             transaction.rollback();
             System.err.println(ex);
+            kq=false;
         } finally {
             session.close();
         }
-        return true;
+        return kq;
     }
 
     public static boolean themBangDiem(BangDiem bangDiem)
